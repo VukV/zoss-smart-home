@@ -31,6 +31,6 @@ Ono što jeste sigurno je da će svaki Smart Home server da razmenjuje podatke i
 
 Unutar samog Smart Home sistema se izdvajaju dve bitne komponente:
 * Smart Home gateway - centralna jedinica, srž sistema, zadužen za kontrolu i komunikaciju sa spoljašnjim okruženjem
-* Uređaji - smart sockets, senzori, pametni uređaji...
+* Uređaji - aktuatori, senzori, pametni uređaji...
 
 (terminologija je detaljnije definisana u predlogu projekta)

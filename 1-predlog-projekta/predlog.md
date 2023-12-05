@@ -4,10 +4,19 @@
 <br>
 
 ## Opšta arhitektura Smart Home sistema
-Generalno govoreći, gotovo svaki Smart Home sistem će se sastojati iz 3 celine:
+
+Ne postoji univerzalna arhitektura za Smart Home sistem, ali postoje celine koje ima gotovo svaki sistem:
 1. Server
 2. Klijentska aplikacija
 3. Smart Home 
+
+![](slike/tipovi-arh.png)
+
+*Tipovi/predlozi Smart Home arhitekture*
+
+[A Proposed Architecture for Smart Home Systems Based on IoT, Context-awareness and Cloud Computing: Samah A. Z. Hassan, Ahmed M. Eassa]
+
+<br>
 
 ### Server
 Server je upravljačka jedinica cele strukture (ne interno Smart Home sistema). Preko servera se dobavljaju podaci i informacije o uređajima, izvršavaju udaljene (remote) naredbe i akcije, itd. Server aktivno komunicira sa klijentskom aplikacijom i samim Smart Home-om. Predstavlja most između korisnika i Smart Home uređaja.
@@ -66,11 +75,16 @@ Gateway funkcije:
 
 ## Uređaji Home network-a
 Vrste uređaja:
- * Smart sockets
+ * Aktuatori
+    * Sockets - utičnice
+    * Valves - ventil
+    * Switches - prekidači 
  * Smart appliances
  * Sigurnosni uređaji i senzori
 
 Smart sockets su uređaji koji se instaliraju u utičnicu na koju se povezuje neki električni uređaj. Oni prate i regulišu rad povezanog uređaja, kao i potrošnju struje. Na zahtev, ili automatizovano, mogu isključivati i uključivati uređaje.
+
+Na sličan način rade i ventili i prekidači, regulišu potrošnju i omogućavaju on/off funkcionalnosti.
 
 Smart apliances su pametni uređaji poput pametnih kliva, frižidera, televizora, i slično.
 
