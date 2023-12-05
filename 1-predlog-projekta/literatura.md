@@ -16,6 +16,12 @@ Protocol Conversion Gateways
 Design of Smart Home System Based on ZigBee Technology and R&D for Application
 - Lin Gao, Zhixin Wang, Jianlong Zhou, Chao Zhang
 
+An Overview of IoT-Based Architecture Modelfor Smart Home Systems
+- Odamboy Djumanazarov, Antti Väänänen, Keijo Haataja, Pekka Toivanen
+
+A Proposed Architecture for Smart Home Systems Based on IoT, Context-awareness and Cloud Computing
+- Samah A. Z. Hassan, Ahmed M. Eassa
+
 [?] Privacy and Security issues in IoT based Smart Home Applications
 - H Manoj T Gadiyar, Dr. Thyagaraju G, Bhavya T, Bhavana, Mamatha, Ahana
 
