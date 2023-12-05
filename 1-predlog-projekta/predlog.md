@@ -86,6 +86,8 @@ Smart sockets su uređaji koji se instaliraju u utičnicu na koju se povezuje ne
 
 Na sličan način rade i ventili i prekidači, regulišu potrošnju i omogućavaju on/off funkcionalnosti.
 
+[An Overview of IoT-Based Architecture Modelfor Smart Home Systems: Odamboy Djumanazarov, Antti Väänänen, Keijo Haataja, Pekka Toivanen]
+
 Smart apliances su pametni uređaji poput pametnih kliva, frižidera, televizora, i slično.
 
 Sigurnosni uređaji predstavljaju kamere, pametne brave i njima slične uređaje. Dakle, zaduženi su za bezbednost doma.
