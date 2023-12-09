@@ -5,7 +5,7 @@
 
 
 ## Cilj istraživanja
-Cilj ovog istraživanja je detaljno istražiti i razumeti arhitekturu Smart Home sistema, kao i njegove pojedinačne komponente. 
+Cilj ovog istraživanja je detaljno istražiti i razumeti arhitekturu Smart Home sistema, kao i njegovih pojedinačnih komponenata. 
 
 Jako je važno identifikovati i analizirati sigurnosne ranjivosti takvog sistema. Kroz dekompoziciju celog sistema, i razmatranje njegovih komponenata potrebno je uočiti ključne tačke koje bi mogle biti mete napada.
 
