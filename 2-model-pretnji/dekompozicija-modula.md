@@ -1,6 +1,6 @@
 # Dekompozicija modula
 
-Dekompozicija modula je izvršina na osnovu izdvojene arhitekture Smart Home sistema (predlog.md).
+Dekompozicija modula je izvršina na osnovu izdvojene arhitekture Smart Home sistema ([predlog.md](../1-predlog-projekta/predlog.md)).
 
 ### Na visokom nivou
 
@@ -9,7 +9,7 @@ Dekompozicija modula je izvršina na osnovu izdvojene arhitekture Smart Home sis
 Na najvišem nivou su izdvojeni sledeći moduli
 * Korisnička aplikacija - predstavlja interfejs preko kog korisnik Smart Home sistema stupa u kontakt sa sistemom, dobavlja informacije, upravlja sistemom, sprovodi komande, itd.
 * Smart Home server - modul koji direknto komunicira sa Smart Home sistemom, prosleđuje korisnikove zahteve, dobavlja podatke, komunicira sa bazom, itd.
-* Smart Home sistem - modul u kome se zapravo nalaze smart home komponente; spolja je "otkriven" preko smart home gateway-a
+* Smart Home sistem - modul u kome se zapravo nalaze smart home komponente; spolja je "otkriven" preko smart home gateway-a.
 
 <br>
 
@@ -30,7 +30,9 @@ Ono što jeste sigurno je da će svaki Smart Home server da razmenjuje podatke i
 <br>
 
 Unutar samog Smart Home sistema se izdvajaju dve bitne komponente:
-* Smart Home gateway - centralna jedinica, srž sistema, zadužen za kontrolu i komunikaciju sa spoljašnjim okruženjem
+* Smart Home gateway - centralna jedinica, srž sistema, zadužen za kontrolu i komunikaciju sa spoljašnjim okruženjem.
 * Uređaji - aktuatori, senzori, pametni uređaji...
 
-(terminologija je detaljnije definisana u predlogu projekta)
+<br>
+
+(terminologija svih komponenata je detaljnije definisana u [predlogu projekta](../1-predlog-projekta/predlog.md))
