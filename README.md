@@ -1,4 +1,4 @@
-# ZOSS projekat
+# ZOSS projekat  [FTN, SIIT, master studije]
 
 ### Model pretnji Smart Home sistema, Vuk Vuković R2 4/2023
 
@@ -32,4 +32,5 @@ Na kraju, istraživanje će se fokusirati na predlaganje strategija zaštite koj
 - [Predlog projekta](1-predlog-projekta/predlog.md) (Opis i arhitektura sistema, definicija komponenata)
 - Model pretnji
     - [Dekompozicija modula](2-model-pretnji/dekompozicija-modula.md) (Grafički prikaz modula na osnovu arhitekture sistema)
-    - TO DO
+    - [Analiza pretnji](2-model-pretnji/analiza-pretnji.md) (Pretnje, napadi, mitigacije i odbrane)
+    - Analiza rizika (TO DO)
