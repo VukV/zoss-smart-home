@@ -42,14 +42,63 @@ Neki od čestih napada [1] su:
 
 ### STRIDE
 
-U narednim tabelama je izrađena analiza pretnji primenom STRIDE metode. Prva tabela se odnosi na pretnje samih uređaja, dok se druga odnosi na komunikacioni sloj sistema.
+U narednom delu je izrađena analiza pretnji primenom STRIDE metode. Pre svega je na modulu Smart Networka definisana površina napada, odnosno definisane su tačke koje napadač može da presretne ili napadne.
 
-Tabela 1: pretnje uređaja [4]
+Nakon toga su definisane liste pretnji po STRIDE-u.
 
-| Tip pretnje | Uređaj | Pretnja |
-|-------------|--------|---------|
-| Header      | Title  |         |
-| Paragraph   | Text   |         |
+<br>
+
+<img src="slike/dekompozicija-napadi.png" alt="Dekompozizija" width="600"/>
+
+Dekompozicija modula: prikaz površina napada
+
+1. Fizički napad na uređaje, što retko izvodljiva i često nepristupačna opcija.
+2. Napad na Gateway (preuzimanje kontrole ili presretanje komunikacije), gde se dolazi do kompletne kontrole nad sistemom.
+3. Napad na mrežu, gde se ostvaruje pristup svim povezanim uređajima.
+4. Napad na server i komunikacija sa Smart Home-om putem kanala server-gateway.  
+
+<br>
+
+*STRIDE liste su razložene po sledećoj strukturi:*
+- *Tip pretnje i opis*
+    - *Uređaj/mrežni sloj (meta)*
+        - *Pretnje*
+- *Mitigacije*
+
+ Prva lista se odnosi na pretnje samih uređaja, dok se druga odnosi na komunikacioni sloj sistema.
+
+<br>
+
+Lista 1: pretnje uređaja [4]
+
+1. **SPOOFING** (Napadač se pretvara da je neko drugi ili falsifikuje podatke)
+- Senzori
+    - Pristup mreži kroz password cracking: Ako napadač pristupi mreži, može da čita podatke sa senzora.
+    - Man in the middle: Napadač može da presretne podatke sa senzora i umetne svoje.
+    - Neautorizovani senzor može da se ubaci u sistem, i pokvari stvarne podatke.
+- Aktuatori
+    - Spoofing aktuatora može dovesti do izdavanja lažnih naredbi i kontrola.
+
+1. Mitigacije:
+    - Postavljanje jakih i složenih šifri, koje će se menjati na određeni vremenski period.
+    - Enkripcija i sigurni komunikacioni protokoli da bi se sprečio man in the middle.
+    - Dodavanje autentifikacije uređaja, kako bi se osigurao pristup sistemu od strane senzora.
+    - Autentifikacija i autorizacija pre svake komande aktuatora.
+    - Monitoring aktivnosti aktuatora.
+
+<br>
+
+2. **TAMPERING** (Napadač modifikuje sistem, podatke, ponašanje komponenata...)
+- Senzori
+    - Isključivanje senzora, što totalno onesposobljava funkcionisanje smart home-a.
+    - Buffer overflow, koji može da dovede do grešaka u sistemu i do neautorizovanog pristupa.
+- Aktuatori
+    - Isključivanje aktuatora, što narušava rad sistema.
+    - Buffer overflow, koji može da dovede do grešaka u sistemu i do neautorizovanog pristupa.
+
+2. Mitigacije:
+    - Ubacivanje sigurnih napajanja u sistem; dodavanje neprekidnih napajanja, kako bi se rad senzora i aktuatora nastavio. Autorizacija i autentifikacija za on/off komande.
+    - Sigurna implementacija i validacija svih unosa kako bi se sprovela zaštita od buffer overflow-a.
 
 <br>
 
@@ -65,3 +114,5 @@ Tabela 1: pretnje uređaja [4]
 [2] A ZigBee-Based Home Automation System: Khusvinder Gill, Shuang-Hua Yang, Fang Yao, Xin Lu
 
 [3] https://www.wevolver.com/article/smart-home-security-security-and-vulnerabilities
+
+[4] Threat Model and Risk Management for a Smart Home IoT System: Ahmed Redha Mahlous
