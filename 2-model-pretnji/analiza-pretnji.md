@@ -27,7 +27,7 @@ Wi-Fi mreže mogu biti podložne napadima [3] zbog korišćenja fabrički postav
 Neki od čestih napada [1] su:
 1. Eavesdropping/Monitoring, odnosno praćenje saobraćaja ka i od smart home mreže, bez znanja vlasnika sistema, gde se mogu pokupiti određeni poverljivi podaci. To je jedan od češćih napada, koji spada u *Information disclosure*.
 2. Masquerading, odnosno maskiranje je imitacija korisnika sistema, u cilju dobavljanja poverljivih podataka. Spada u *Spoofing of user identity*.
-3. Network unavailability je tipičan primer *Denial of service* napada. Ima cilj da osposobi mrežu da autentifikuje korisnika, zabrani mu pristup ili da onesposobi samu mrežu.
+3. Network unavailability je tipičan primer *Denial of service* napada. Ima cilj da onesposobi mrežu da autentifikuje korisnika, zabrani mu pristup ili da onesposobi samu mrežu.
 4. itd.
 
 <img src="slike/napadi-opste.png" alt="Česti napadi" width="500"/>
@@ -48,7 +48,8 @@ Nakon toga je definisana lista pretnji po STRIDE-u.
         - *Pretnje/napadi*
 - *Mitigacije*
 
-Slično je urađeno i za modul koji obuhvata Smart Home server.
+(TO DO ?)
+(Slično je urađeno i za modul koji obuhvata Smart Home server.)
 
 <br>
 
@@ -87,20 +88,24 @@ Mitigacije:
 - Autentifikacija i autorizacija pre svake komande aktuatora.
 - Monitoring aktivnosti aktuatora.
 
+<img src="slike/mitigacije/spoofing.png" alt="Dekompozizija" width="600"/>
+
 <br>
 
 #### **TAMPERING** (Napadač modifikuje sistem, podatke, ponašanje komponenata...)
 - Gateway
     - Pristup lažnog korisnika može da uzrokuje injektovanjem lažnih podataka ili komandi u sistem.
 - Senzori i aktuatori
-    - Dobavljanje ključeva, tampering OS-a uređaja
+    - Dobavljanje ključeva, tampering OS-a uređaja.
     - Isključivanje aktuatora, što narušava rad sistema.
-    - Buffer overflow, koji može da dovede do grešaka u sistemu i do neautorizovanog pristupa.
+    - Buffer overflow, koji može da dovede do grešaka u sistemu i do promene pnoašanja komponenata.
 
 Mitigacije:
 - Sprovođenje autentifikacije i autorizacije.
 - Ubacivanje sigurnih napajanja u sistem; dodavanje neprekidnih napajanja, kako bi se rad senzora i aktuatora nastavio. Autorizacija i autentifikacija za on/off komande.
 - Sigurna implementacija i validacija svih unosa kako bi se sprovela zaštita od buffer overflow-a.
+
+<img src="slike/mitigacije/tampering.png" alt="Tampering" width="600"/>
 
 <br>
 
@@ -109,7 +114,7 @@ Mitigacije:
 
 <br>
 
-#### **INFORMATION DISCLOSURE** (davanje/prikazivanje podataka nekome ko nije autorizovan za iste)
+#### **INFORMATION DISCLOSURE** (Davanje/prikazivanje podataka nekome ko nije autorizovan za iste)
 - Gateway
     - Eavesdropping/praćenje saobraćaja ka gateway-u može dovesti do krađe podataka (npr access ključevi) i pristupa podacima svih uređaja.
 - Senzori i aktuatori
@@ -119,15 +124,61 @@ Mitigacije:
 - Upotreba sigurnih kanala za komunikaciju, enkripcija podataka koji se šalju.
 - Stroga kontrola pristupa i autorizacija, čuvanje ključeva u enkriptovanom obliku, promena ključeva
 
-<br>
-
-#### **DENIAL OF SERVICE** ()
-- 
-
-
-### Smart Home server i klijentska aplikacija
+<img src="slike/mitigacije/information-disclosure.png" alt="Information disclosure" width="600"/>
 
 <br>
+
+#### **DENIAL OF SERVICE** (Onesposobljavanje/nedostupnost sistema ili uređaja)
+- Gateway
+    - Slanje velikog broja zahteva/naredbi, kako bi se Gateway opteretio i bio nedostupan korisniku.
+- Aktuatori i senzori
+    - Slanje velikog broja zahteva/naredbi, kako bi se uređaj opteretio i bio nedostupan korisniku.
+    - Gašenje uređaja dovodi do njegove nedostupnosti za rad u sistemu.
+    - Krađa uređaja (fizički napad): Ako uređaj nije prisutan u sistemu, ne može ni da funkcioniše.
+- Wi-Fi
+    - Jamming [6] napad koji dovodi do preopterećenja mreže, gde će korisnikovi paketi biti odbačeni.
+
+Mitigacije:
+- Implementacija ograničenja pristupa kako bi se sprečilo preopterećenje mreže velikim brojem zahteva.
+- Automatsko resetovanje ili preusmeravanje saobraćaja kada se detektuje preopterećenje.
+- Upotreba anti-jamming tehnologija i promena frekvencija kako bi se izbeglo ili umanjilo blokiranje signala; jačanje sigurnosti mreže i primena enkripcije.
+- Uvođenje sigurnog i neprekidnog napajanja protiv gašenja uređaja.
+
+<img src="slike/mitigacije/denial-of-service.png" alt="Denial of service" width="600"/>
+
+<br>
+
+#### **ELEVATION OF PRIVILEGE** (Pristup podacima koji su namenjeni samo korisnicima sa određenom privilegijom)
+- Senzori i aktuatori
+    - Buffer overflow se može sprovesti za izvršavanje radnji koje su dozvoljene samo određenim korisnicima.
+- Gateway
+    - Zloupotreba bagova u sistemu može dovesti do pristupa akcijama rezervisanim za druge privilegije.
+
+
+Mitigacije:
+- Upotreba least privilege modela.
+- Sigurna implementacija i validacija svih unosa kako bi se sprovela zaštita od buffer overflow-a.
+- Koristiti stabilne verzije firmware-a (ukoliko postoje).
+
+<img src="slike/mitigacije/elevation-of-privilege.png" alt="Denial of service" width="600"/>
+
+
+<br><br>
+
+<img src="slike/mitigacije-dijagram.png" alt="Mitigacije"/>
+
+Dijagram na kome su predstavljene neke od navedenih mitigacija
+
+<br><br>
+
+### Mitigacije - Firewall
+U prethodnom navođenju mitigacija, Firewall kao mitigacija nije naveden, jer spada u zaštitu od većine pomenutih pretnji. Odnosno, pruža zažtitu na nivou celog modula od različitih vrsta napada, a ne samo nekog dela sistema [1].
+
+Firewall se primenjuje kako bi se kontrolisao saobraćaj mreže. Gateway, kao pristupna tačka, komunicira sa Internetom. Sav saobraćaj Smart Home mreže koji se prenosi iz interne mreže na Internet ili s Interneta na internu mrežu prolazi kroz Gateway. Prema tome, firewall se može postaviti na Gateway kako bi se sprečili svi neautorizovani pristupi ili sumnjive informacije. Firewall takođe prati i analizira sav saobraćaj.
+
+<img src="slike/mitigacije/firewall.png" alt="Firewall" width="500"/>
+
+<br><br>
 
 ## Literatura:
 
@@ -140,3 +191,5 @@ Mitigacije:
 [4] Threat Model and Risk Management for a Smart Home IoT System: Ahmed Redha Mahlous
 
 [5] A Threat Modelling Approach to Analyze and Mitigate Botnet Attacks in Smart Home Use Case: Syed Ghazanfar Abbas, Shahzaib Zahid, Faisal Hussain, Ghalib A. Shah, Muhammad Husnain
+
+[6] https://seon.io/resources/dictionary/jamming-attacks/
