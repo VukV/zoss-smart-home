@@ -4,13 +4,9 @@ U ovom dokumenti su izdvojene ključne mete napada. Za iste je odrađena analiza
 
 <br>
 
+## Pretnje
 
-## Smart Home sistem (Network i Gateway)
-<br>
-
-### Pretnje
-
-Inicijalno će se analiza pretnji posvetiti identifikaciji i pregledu nekoliko opštih napada sa kojima Smart Home sistem može da se sretne. Taj pregled će omogućiti sticanje osvnog razumevanja sigurnosnih izazova sa kojima vlasnici pametnih domaćinstava mogu da se suoče.
+Inicijalno će se analiza pretnji posvetiti identifikaciji i pregledu nekoliko opštih napada sa kojima Smart Home sistem može da se sretne. Taj pregled će omogućiti sticanje osnovnog razumevanja sigurnosnih izazova sa kojima vlasnici pametnih domaćinstava mogu da se suoče.
 
 Nakon toga, analiza pretnji će se usmeriti na detaljniju konstrukciju primenom STRIDE modela. 
 
@@ -40,70 +36,96 @@ Neki od čestih napada [1] su:
 
 <br>
 
-### STRIDE
+## STRIDE
 
 U narednom delu je izrađena analiza pretnji primenom STRIDE metode. Pre svega je na modulu Smart Networka definisana površina napada, odnosno definisane su tačke koje napadač može da presretne ili napadne.
 
-Nakon toga su definisane liste pretnji po STRIDE-u.
+Nakon toga je definisana lista pretnji po STRIDE-u.
+
+*STRIDE liste su razložene po sledećoj strukturi:*
+- *Tip pretnje i opis*
+    - *Uređaj/mrežni sloj (meta)*
+        - *Pretnje/napadi*
+- *Mitigacije*
+
+Slično je urađeno i za modul koji obuhvata Smart Home server.
 
 <br>
+
+### Smart Home sistem (Network i Gateway)
 
 <img src="slike/dekompozicija-napadi.png" alt="Dekompozizija" width="600"/>
 
 Dekompozicija modula: prikaz površina napada
 
-1. Fizički napad na uređaje, što retko izvodljiva i često nepristupačna opcija.
+1. Fizički napad na uređaje, što je retko izvodljiva i često nepristupačna opcija.
 2. Napad na Gateway (preuzimanje kontrole ili presretanje komunikacije), gde se dolazi do kompletne kontrole nad sistemom.
 3. Napad na mrežu, gde se ostvaruje pristup svim povezanim uređajima.
-4. Napad na server i komunikacija sa Smart Home-om putem kanala server-gateway.  
+4. Napad na server ili kanal kojim server komunicira sa Smart Home-om.  
 
 <br>
 
-*STRIDE liste su razložene po sledećoj strukturi:*
-- *Tip pretnje i opis*
-    - *Uređaj/mrežni sloj (meta)*
-        - *Pretnje*
-- *Mitigacije*
+Lista 1: pretnje Smart Home uređaja i komunikacionih kanala [4][5]
 
- Prva lista se odnosi na pretnje samih uređaja, dok se druga odnosi na komunikacioni sloj sistema.
-
-<br>
-
-Lista 1: pretnje uređaja [4]
-
-1. **SPOOFING** (Napadač se pretvara da je neko drugi ili falsifikuje podatke)
-- Senzori
-    - Pristup mreži kroz password cracking: Ako napadač pristupi mreži, može da čita podatke sa senzora.
+#### **SPOOFING** (Napadač se pretvara da je neko drugi ili falsifikuje podatke)
+- Wi-Fi
+    - Pristup mreži kroz password cracking: Ako napadač pristupi mreži, može da čita podatke sa uređaja.
     - Man in the middle: Napadač može da presretne podatke sa senzora i umetne svoje.
+- Gateway
+    - Slabi ili "default" kredencijali omogućavaju pristup logovima, lokalno zapisanim podacima, itd.
+- Senzori
     - Neautorizovani senzor može da se ubaci u sistem, i pokvari stvarne podatke.
+    - Ukoliko se za sve senzore koriste isti tokeni za autentifikaciju, preko jednog tokena se može pristupiti ostalim uređajima.
 - Aktuatori
     - Spoofing aktuatora može dovesti do izdavanja lažnih naredbi i kontrola.
 
-1. Mitigacije:
-    - Postavljanje jakih i složenih šifri, koje će se menjati na određeni vremenski period.
-    - Enkripcija i sigurni komunikacioni protokoli da bi se sprečio man in the middle.
-    - Dodavanje autentifikacije uređaja, kako bi se osigurao pristup sistemu od strane senzora.
-    - Autentifikacija i autorizacija pre svake komande aktuatora.
-    - Monitoring aktivnosti aktuatora.
+Mitigacije:
+- Postavljanje jakih i složenih šifri, koje će se menjati na određeni vremenski period.
+- Enkripcija i sigurni komunikacioni protokoli da bi se sprečio man in the middle.
+- Dodavanje autentifikacije uređaja, kako bi se osigurao pristup sistemu od strane senzora.
+- Generisanje različitih tokena za različite uređaje.
+- Autentifikacija i autorizacija pre svake komande aktuatora.
+- Monitoring aktivnosti aktuatora.
 
 <br>
 
-2. **TAMPERING** (Napadač modifikuje sistem, podatke, ponašanje komponenata...)
-- Senzori
-    - Isključivanje senzora, što totalno onesposobljava funkcionisanje smart home-a.
-    - Buffer overflow, koji može da dovede do grešaka u sistemu i do neautorizovanog pristupa.
-- Aktuatori
+#### **TAMPERING** (Napadač modifikuje sistem, podatke, ponašanje komponenata...)
+- Gateway
+    - Pristup lažnog korisnika može da uzrokuje injektovanjem lažnih podataka ili komandi u sistem.
+- Senzori i aktuatori
+    - Dobavljanje ključeva, tampering OS-a uređaja
     - Isključivanje aktuatora, što narušava rad sistema.
     - Buffer overflow, koji može da dovede do grešaka u sistemu i do neautorizovanog pristupa.
 
-2. Mitigacije:
-    - Ubacivanje sigurnih napajanja u sistem; dodavanje neprekidnih napajanja, kako bi se rad senzora i aktuatora nastavio. Autorizacija i autentifikacija za on/off komande.
-    - Sigurna implementacija i validacija svih unosa kako bi se sprovela zaštita od buffer overflow-a.
+Mitigacije:
+- Sprovođenje autentifikacije i autorizacije.
+- Ubacivanje sigurnih napajanja u sistem; dodavanje neprekidnih napajanja, kako bi se rad senzora i aktuatora nastavio. Autorizacija i autentifikacija za on/off komande.
+- Sigurna implementacija i validacija svih unosa kako bi se sprovela zaštita od buffer overflow-a.
 
 <br>
 
+#### **REPUDIATION** (Negiranje izvršavanja određene akcije)
+- Za ovu stavku nisu pronađene odgovarajuće pretnje i napadi.
 
-## Server i klijentska aplikacija
+<br>
+
+#### **INFORMATION DISCLOSURE** (davanje/prikazivanje podataka nekome ko nije autorizovan za iste)
+- Gateway
+    - Eavesdropping/praćenje saobraćaja ka gateway-u može dovesti do krađe podataka (npr access ključevi) i pristupa podacima svih uređaja.
+- Senzori i aktuatori
+    - Krađa uređaja (fizički napad): ukoliko je uređaj ukraden, može se pristupiti podacima koji se u njemu nalaze.
+
+Mitigacije:
+- Upotreba sigurnih kanala za komunikaciju, enkripcija podataka koji se šalju.
+- Stroga kontrola pristupa i autorizacija, čuvanje ključeva u enkriptovanom obliku, promena ključeva
+
+<br>
+
+#### **DENIAL OF SERVICE** ()
+- 
+
+
+### Smart Home server i klijentska aplikacija
 
 <br>
 
@@ -116,3 +138,5 @@ Lista 1: pretnje uređaja [4]
 [3] https://www.wevolver.com/article/smart-home-security-security-and-vulnerabilities
 
 [4] Threat Model and Risk Management for a Smart Home IoT System: Ahmed Redha Mahlous
+
+[5] A Threat Modelling Approach to Analyze and Mitigate Botnet Attacks in Smart Home Use Case: Syed Ghazanfar Abbas, Shahzaib Zahid, Faisal Hussain, Ghalib A. Shah, Muhammad Husnain
