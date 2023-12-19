@@ -48,9 +48,6 @@ Nakon toga je definisana lista pretnji po STRIDE-u.
         - *Pretnje/napadi*
 - *Mitigacije*
 
-(TO DO ?)
-(Slično je urađeno i za modul koji obuhvata Smart Home server.)
-
 <br>
 
 ### Smart Home sistem (Network i Gateway)
@@ -172,7 +169,7 @@ Dijagram na kome su predstavljene neke od navedenih mitigacija
 <br><br>
 
 ### Mitigacije - Firewall
-U prethodnom navođenju mitigacija, Firewall kao mitigacija nije naveden, jer spada u zaštitu od većine pomenutih pretnji. Odnosno, pruža zažtitu na nivou celog modula od različitih vrsta napada, a ne samo nekog dela sistema [1].
+U prethodnom navođenju mitigacija, Firewall kao mitigacija nije naveden, jer se ne može kategorizovati u mitigaciju pojedinačnih napada, već spada u zaštitu od većine pomenutih pretnji. Odnosno, pruža zažtitu na nivou celog modula od različitih vrsta napada, a ne samo nekog dela sistema [1].
 
 Firewall se primenjuje kako bi se kontrolisao saobraćaj mreže. Gateway, kao pristupna tačka, komunicira sa Internetom. Sav saobraćaj Smart Home mreže koji se prenosi iz interne mreže na Internet ili s Interneta na internu mrežu prolazi kroz Gateway. Prema tome, firewall se može postaviti na Gateway kako bi se sprečili svi neautorizovani pristupi ili sumnjive informacije. Firewall takođe prati i analizira sav saobraćaj.
 
