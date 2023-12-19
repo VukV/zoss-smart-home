@@ -38,8 +38,8 @@ Ukoliko je mreža neosigurana, ima "default" kredencijale, ili slabe šifre, ver
 
 #### Modifikacija sistema
 * Verovatnoća: 2
-* Uticaj: 2
-* Rizik: 2
+* Uticaj: 1
+* Rizik: 1
 
 #### Buffer overflow
 * Verovatnoća: 2
@@ -80,10 +80,10 @@ Krađa uređaja takođe ima veliki uticaj, jer osim onesposobljavanja samog sist
 * Uticaj: 1
 * Rizik: 2
 
-#### TO DO
-* Verovatnoća: 
-* Uticaj: 
-* Rizik: 
+#### Gašenje uređaja
+* Verovatnoća: 2
+* Uticaj: 1
+* Rizik: 1
 
 #### Krađa uređaja
 * Verovatnoća: 1
@@ -91,6 +91,8 @@ Krađa uređaja takođe ima veliki uticaj, jer osim onesposobljavanja samog sist
 * Rizik: 1
 
 Wi-Fi- jamming kao i DoS napadi možda jesu među verovatnijim napadima, ali njihov uticaj nije velik, jer privremeno onesposobljava mrežu, bez dugoročnih posledica.
+
+Slično, gašenje uređaja ima kratkoročne posledice, odnosno sistem će biti onesposobljen dok se oni ponovo ne upale. Međutim, od bitnosti uređaja u sistemu i nivo rizika može varirati.
 
 Kao što je prethodno opisano, krađa uređaja ima veliki uticaj, jer osim onesposobljavanja samog sistema uzrokuje i finansijski trošak. Ponovo, rizik je postavljen na 1, iako je prosečna vrednost 2, jer su fizički napadi, odnosno krađa uređaja izuzetno retki.
 
@@ -104,9 +106,9 @@ Kao što je prethodno opisano, krađa uređaja ima veliki uticaj, jer osim onesp
 * Rizik: 2
 
 #### Buffer overflow
-* Verovatnoća: 
-* Uticaj: 
-* Rizik: 
+* Verovatnoća: 2
+* Uticaj: 1
+* Rizik: 2
 
 Eksploatacija bagova u ozbiljnim produkcionim sistemima je retka pojava, zbog toga je i verovatnoća ovakvog napada 1. Međutim, ukoliko se dese, često za sobom ostavljaju veliku štetu.
 
