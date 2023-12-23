@@ -1,33 +1,42 @@
-# Predlog teme projekta
-## Model pretnji Smart Home sistema
-
-<br>
+# Arhitektura Smart Home sistema
 
 ## Opšta arhitektura Smart Home sistema
 
-Ne postoji univerzalna arhitektura za Smart Home sistem, ali postoje celine koje ima gotovo svaki sistem:
-1. Server,
-2. Klijentska aplikacija,
-3. i Smart Home.
+Ne postoji univerzalna arhitektura za Smart Home sisteme, gde tabela izvučena iz [1] prikazuje više načina za organizaciju takvih sistema.
 
 ![](slike/tipovi-arh.png)
 
-Tipovi/predlozi Smart Home arhitekture [1]
+*Tipovi/predlozi Smart Home arhitekture [1]*
 
 <br>
 
-### Server
-Server je upravljačka jedinica cele strukture (ne interno Smart Home sistema). Preko servera se dobavljaju podaci i informacije o uređajima, izvršavaju udaljene (remote) naredbe i akcije, itd. Server aktivno komunicira sa klijentskom aplikacijom i samim Smart Home-om. Predstavlja most između korisnika i Smart Home uređaja.
+Uprkos različitim arhitekturama, postoje zajedničke komponente koje svaka arhitektura uključuje i to su:
 
-<br>
+#### 1. Server
+Server je upravljačka jedinica cele strukture, a ne interno domaćinstva. To znači da se korisnikove instrukcije Smart Home sistemu šalju od korisničke aplikacije kroz server. Preko servera se dobavljaju podaci i informacije o uređajima, izvršavaju udaljene (remote) naredbe i akcije, itd. Server aktivno komunicira sa klijentskom aplikacijom i samim Smart Home-om. Predstavlja most između korisnika i Smart Home uređaja.
 
-### Klijentska aplikacija
-Obezbeđuje platformu, odnosno interfejs krajnjem korisniku za upotrebu i monitoring Smart Home sistema. Od servera dobija monitoring podatke, a istom šalje upravljačke instrukcije za uređaje unutar sistema.
+#### 2. Klijentska aplikacija
+Obezbeđuje interfejs krajnjem korisniku za upotrebu i monitoring [6] Smart Home sistema. Od servera dobija monitoring podatke, a istom šalje upravljačke instrukcije za uređaje unutar sistema.
+
+#### 3. Smart Home - deo sistema koji je meta bezbednosne analize u okviru ovog istraživanja i koja je detaljnije opisana ispod
+
+
 
 <br>
 
 ## Smart Home
 Smart Home sistem predstavljaju dve celine: Home Gateway i Home Network.
+
+![Prikaz arhitekture na apstraktnom niou](slike/smart-home-opste.png)
+
+*Prikaz arhitekture na visokom niou 1*
+
+![Prikaz arhitekture na apstraktnom niou 2](slike/smart-home-opste-2.png)
+
+*Prikaz arhitekture na visokom niou 2 [5]*
+
+Ove dve slike prikazuju zajedničke komponente ovih sistema, i daju uvid u arhitekturu na visokom nivou. Sa ovih slika se može zaključiti da se Smart Home sistem ne može posmatrati potpuno nezavisno, zbog neophodne interakcije sa korisnikom, odnosno serverom. U pitanju je standardna http(s)/websocket komunikacija (upotreba eksterne aplikacije/interfejsa i servera).
+Ova dva dijagrama arhitekture Smart Home sistema će poslužiti kao početna tačka za dekompoziciju modula.
 
 <br>
 
@@ -71,24 +80,10 @@ Smart sockets [3] su uređaji koji se instaliraju u utičnicu na koju se povezuj
 
 Na sličan način rade i ventili i prekidači [4], regulišu potrošnju i omogućavaju on/off funkcionalnosti.
 
-Smart apliances su pametni uređaji poput pametnih kliva, frižidera, televizora, i slično.
+Smart apliances su pametni uređaji poput pametnih klima, frižidera, televizora, i slično.
 
 Sigurnosni uređaji [3] predstavljaju kamere, pametne brave i njima slične uređaje. Dakle, zaduženi su za bezbednost doma.
 U ovu grupu se najčešće ubrajaju i senzori, iako oni sami po sebi ne moraju nužno biti vezani za sigurnost. To mogu biti senzori za dim, gas, temperaturu, itd.
-
-<br><br>
-
-Smart Home sistem se ne može posmatrati potpuno nezavisno, zbog neophodne interakcije sa korisnikom, odnosno serverom. U pitanju je standardna http(s)/websocket komunikacija (upotreba eksterne aplikacije/interfejsa i servera).
-
-![Prikaz arhitekture na apstraktnom niou](slike/smart-home-opste.png)
-
-Prikaz arhitekture na visokom niou 1
-
-![Prikaz arhitekture na apstraktnom niou 2](slike/smart-home-opste-2.png)
-
-Prikaz arhitekture na visokom niou 2 [5]
-
-Ova dva dijagrama arhitekture Smart Home sistema će poslužiti kao početna tačka za dekompoziciju modula.
 
 <br>
 
@@ -118,3 +113,5 @@ Detaljniji prikaz arhitekture [3], koji će poslužiti za detaljniju dekompozici
 [4] An Overview of IoT-Based Architecture Modelfor Smart Home Systems: Odamboy Djumanazarov, Antti Väänänen, Keijo Haataja, Pekka Toivanen
 
 [5] Design of Smart Home System Based on ZigBee Technology and R&D for Application: Lin Gao, Zhixin Wang, Jianlong Zhou, Chao Zhang
+
+[6] https://www.techopedia.com/definition/4313/monitoring-software

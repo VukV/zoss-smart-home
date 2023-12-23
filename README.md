@@ -4,10 +4,15 @@
 
 <br>
 
-## Meta napada
-Meta napada u kontekstu Smart Home sistema obuhvata kompletnu infrastrukturu koja omogućava povezanost i upravljanje raznih uređaja unutar pametnog domaćinstva.
+## Smart Home
+Smart Home, poznat i kao pametna kuća, je koncept u kojem kućni uređaji mogu biti automatizovani i kontrolisani na daljinu preko interneta koristeći interfejs upotrebom telefona, tableta ili nekog drugog uređaja. Osnovne komponente Smart Home sistema obično uključuju centralni kontrolni sistem (gateway), senzore i povezane uređaje koji komuniciraju preko Wi-Fi ili druge bežične tehnologije.
 
-Svaki od elemenata celog sistema može biti potencijalna tačka napada.
+*(Detaljnije u arhitekturi sistema, pogledati sadržaj)*
+
+<br>
+
+## Meta napada
+Meta napada u kontekstu Smart Home sistema obuhvata kompletnu infrastrukturu koja omogućava povezanost i upravljanje raznih uređaja unutar pametnog domaćinstva. Svaki od elemenata celog sistema može biti potencijalna tačka napada.
 
 Korisnik upotrebom klijentske aplikacije komunicira sa svojim domaćinstvom. Klijentska aplikacija dobavlja informacije od Smart Home servera, i istom šalje instrukcije za upravljanje Smart Home-a. Server je u vezi sa određenom komponentom Smart Home-a koja koordiniše sve operacije i povezuje sve ostale pametne komponente.
 
@@ -29,8 +34,7 @@ Na kraju, istraživanje će se fokusirati na predlaganje strategija zaštite koj
 <br>
 
 ## Sadržaj
-- [Predlog projekta](1-predlog-projekta/predlog.md) (Opis i arhitektura sistema, definicija komponenata)
+- [Arhitektura Smart Home-a](1-predlog-projekta/predlog.md) (Opis i arhitektura sistema, definicija komponenata)
 - Model pretnji
     - [Dekompozicija modula](2-model-pretnji/dekompozicija-modula.md) (Grafički prikaz modula na osnovu arhitekture sistema)
     - [Analiza pretnji](2-model-pretnji/analiza-pretnji.md) (Pretnje, napadi i mitigacije po STRIDE modelu)
-    - [Analiza rizika](2-model-pretnji/analiza-rizika.md)
