@@ -43,7 +43,7 @@ U narednom delu će se obraditi nekoliko pretnji, kroz prikaz stabala napada, sa
 ### Pristup Home Network-u
 Pristup mreži Smart Home uređaja je možda i najopasniji scenario koji može da zadesi jedan ovakav sistem. Pristupom Home Network-u, napadač ima na raspolaganju sve uređaje koji su u njemu povezani, što uključuje i Gateway. Jako je važno zaštititi se od napada koji mogu da dovedu do pristupa Smart Home mreži.
 
-<img src="slike/stabla/pristup-network.png" alt="Pristup Home Network-u" width="650"/>
+<img src="slike/stabla/pristup.png" alt="Pristup Home Network-u" width="650"/>
 
 <br>
 
@@ -63,7 +63,9 @@ Proces izvršavanja MitM napada se sastoji iz sledećih koraka [9]:
 Kako bi se odradila mitigacija MitM napada u Smart Home sistemima, enkripcija komunikacijskih kanala igra ključnu ulogu. Potrebno je sprovesti TLS, odnosno Transport Layer Security, kriptografski protokol koji enkriptuje podatke koji se šalju između uređaja, tako da u slučaju presretanja oni budu u nečitljivom formatu. Pored TLS-a, važno je primeniti HTTP Strict Transport Security (HSTS), odnosno web sigurnosni mehanizam koji štiti od MitM napada tako što forsira komunikaciju isključivo preko sigurne HTTPS konekcije, umesto putem običnog HTTP-a. Još jedan način zaštite je upotreba RBAC-a, odnosno Role-Based Access Control-a. RBAC ograničava pristup mreži po principu korisničkih uloga, pružajući način za ograničavanje pristupa mrežnim resursima, što pomaže u sprečavanju neovlašćenog prostupa. Upotreba ovih mehanizama može znatno da smanji rizik MitM napada.
 
 #### **Phishing**
-TODO
+Phishing [14] je vrsta napada gde napadači koriste lažne mejlove, poruke ili web stranice da bi prevarili žrtve da otkriju, odnosno predaju svoje osetljive informacije. Napadači često kreiraju poruke koje izgledaju kao da dolaze od legitimnih izvora, u ovom slučaju Smart Home provajdera, kako bi ubedili žrtve da im veruju i izvrše radnje poput klika na maliciozni link ili unosa poverljivih informacija na lažnim web stranicama. Phishing je efikasan jer se oslanja na socijalni inženjering i manipulaciju, a ne samo na tehničke slabosti.
+
+Ključna zaštita protiv phishing-a je obrazovanje i svest korisnika. Ovo uključuje redovno informisanje korisnika o najnovijim taktikama koje koriste napadači, kao i o tome kako prepoznati sumnjive mejlove, poruke i web stranice. Trening treba da obuhvati primere phishing napada i upute o tome šta raditi ako se sumnja na phishing. Pored toga, preporučljivo je korišćenje spam filtera, kako bi se broj pristiglih phishing poruka sveo na minimum.
 
 <br>
 
@@ -133,5 +135,7 @@ TODO
 [12] https://www.wireshark.org/
 
 [13] https://github.com/intrepidusgroup/mallory
+
+[14] https://www.ibm.com/topics/phishing
 
 [A] https://seon.io/resources/dictionary/jamming-attacks/
