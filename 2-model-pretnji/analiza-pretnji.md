@@ -1,16 +1,12 @@
 # Analiza pretnji
 
-U ovom dokumenti su izdvojene ključne mete napada. Za iste je odrađena analiza pretnji, odnosno izdvojene su ranjivosti i napadi, kao i mitigacije ili odbrane koje te napade ublažavaju ili sprečavaju.
+U ovom dokumenti su izdvojene ključne mete napada. Za neke od njih je odrađena analiza pretnji, odnosno izdvojeni su napadi, kao i mitigacije ili odbrane koje te napade ublažavaju ili sprečavaju.
 
 <br>
 
-## Pretnje
+## Uvod
 
-Inicijalno će se analiza pretnji posvetiti identifikaciji i pregledu nekoliko opštih napada sa kojima Smart Home sistem može da se sretne. Taj pregled će omogućiti sticanje osnovnog razumevanja sigurnosnih izazova sa kojima vlasnici pametnih domaćinstava mogu da se suoče.
-
-Nakon toga, analiza pretnji će se usmeriti na detaljniju konstrukciju primenom STRIDE modela. 
-
-<br>
+Ovaj dokument će se posvetiti identifikaciji i pregledu nekoliko opštih pretnji i napada sa kojima Smart Home sistem može da se sretne. Taj pregled će omogućiti sticanje osnovnog razumevanja sigurnosnih izazova sa kojima vlasnici pametnih domaćinstava mogu da se suoče.
 
 Osvrt na sigurnost može biti veliki izazov zbog heterogene prirode ovih sistema, odnosno zbog raznolikosti mehanizama samih uređaja, kao i postojanja različitih protokola komunikacije koji u isto vreme mogu da postoje u istom sistemu [1].
 
@@ -18,43 +14,19 @@ Neki od protokola [1] su:
 - **Žičani:** Homeplug, X10, Batibus, Cebus, Ethernet, USB
 - **Bežični:** IEEE 802.11 (opšte poznat kao Wi-Fi), Bluetooth, Zigbee [2], Hiperlan
 
-Zbog toga, sprovođenje sigurnosti često varira od uređaja do uređaja. Tako na primer, u slučaju bežičnog sistema, ako napadač uspe da ostvari nekakav pristup, velika je šansa da može doći do poverljivih informacija o korisniku ili može manipulisati njima.
+Zbog toga, sprovođenje sigurnosti često varira od uređaja do uređaja. Tako na primer, u slučaju bežičnog sistema, ako napadač uspe da ostvari nekakav pristup sistemu, velika je šansa da može doći do poverljivih informacija o korisniku ili može manipulisati njima.
 
-Wi-Fi mreže mogu biti podložne napadima [3] zbog korišćenja fabrički postavljenih ili slabih lozinki, kao i zbog korišćenja ranjivih protokola za šifrovanje. Korišćenje podrazumevanih pristupnih podataka omogućava napadaču da bez ikakvog truda pristupi ruteru, a samim tim i smart home sistemu.
-
-<br>
-
-Neki od čestih napada [1] su:
-1. Eavesdropping/Monitoring, odnosno praćenje saobraćaja ka i od smart home mreže, bez znanja vlasnika sistema, gde se mogu pokupiti određeni poverljivi podaci. To je jedan od češćih napada, koji spada u *Information disclosure*.
-2. Masquerading, odnosno maskiranje je imitacija korisnika sistema, u cilju dobavljanja poverljivih podataka. Spada u *Spoofing of user identity*.
-3. Network unavailability je tipičan primer *Denial of service* napada. Ima cilj da onesposobi mrežu da autentifikuje korisnika, zabrani mu pristup ili da onesposobi samu mrežu.
-4. itd.
-
-<img src="slike/napadi-opste.png" alt="Česti napadi" width="500"/>
-
-Česti napadi na smart home okruženja
+Wi-Fi mreže mogu biti podložne napadima [3] zbog korišćenja fabrički postavljenih ili slabih lozinki. Korišćenje podrazumevanih pristupnih podataka omogućava napadaču da bez ikakvog truda pristupi ruteru, a samim tim i Smart Home sistemu.
 
 <br>
 
-## STRIDE
+## Dekompozicija modula - površine napada
 
-U narednom delu je izrađena analiza pretnji primenom STRIDE metode. Pre svega je na modulu Smart Networka definisana površina napada, odnosno definisane su tačke koje napadač može da presretne ili napadne.
-
-Nakon toga je definisana lista pretnji po STRIDE-u.
-
-*STRIDE liste su razložene po sledećoj strukturi:*
-- *Tip pretnje i opis*
-    - *Uređaj/mrežni sloj (meta)*
-        - *Pretnje/napadi*
-- *Mitigacije*
-
-<br>
-
-### Smart Home sistem (Network i Gateway)
+Na modulu koji je sačinjen od Home Network-a i Gateway-a definisana je površina napada, odnosno definisane su tačke koje napadač može da presretne ili napadne.
 
 <img src="slike/dekompozicija-napadi.png" alt="Dekompozizija" width="600"/>
 
-Dekompozicija modula: prikaz površina napada
+*Dekompozicija modula: prikaz površina napada*
 
 1. Fizički napad na uređaje, što je retko izvodljiva i često nepristupačna opcija.
 2. Napad na Gateway (preuzimanje kontrole ili presretanje komunikacije), gde se dolazi do kompletne kontrole nad sistemom.
@@ -63,119 +35,76 @@ Dekompozicija modula: prikaz površina napada
 
 <br>
 
-Lista 1: pretnje Smart Home uređaja i komunikacionih kanala [4][5]
-
-#### **SPOOFING** (Napadač se pretvara da je neko drugi ili falsifikuje podatke)
-- Wi-Fi
-    - Pristup mreži kroz password cracking: Ako napadač pristupi mreži, može da čita podatke sa uređaja.
-    - Man in the middle: Napadač može da presretne podatke sa senzora i umetne svoje.
-- Gateway
-    - Slabi ili "default" kredencijali omogućavaju pristup logovima, lokalno zapisanim podacima, itd.
-- Senzori
-    - Neautorizovani senzor može da se ubaci u sistem, i pokvari stvarne podatke.
-    - Ukoliko se za sve senzore koriste isti tokeni za autentifikaciju, preko jednog tokena se može pristupiti ostalim uređajima.
-- Aktuatori
-    - Spoofing aktuatora može dovesti do izdavanja lažnih naredbi i kontrola.
-
-Mitigacije:
-- Postavljanje jakih i složenih šifri, koje će se menjati na određeni vremenski period.
-- Enkripcija i sigurni komunikacioni protokoli da bi se sprečio man in the middle.
-- Dodavanje autentifikacije uređaja, kako bi se osigurao pristup sistemu od strane senzora.
-- Generisanje različitih tokena za različite uređaje.
-- Autentifikacija i autorizacija pre svake komande aktuatora.
-- Monitoring aktivnosti aktuatora.
-
-<img src="slike/mitigacije/spoofing.png" alt="Dekompozizija" width="600"/>
+## Pretnje - Napadi - Mitigacije
+U narednom delu će se obraditi nekoliko pretnji, kroz prikaz stabala napada, sa načinima odbrana od istih [4][5].
 
 <br>
 
-#### **TAMPERING** (Napadač modifikuje sistem, podatke, ponašanje komponenata...)
-- Gateway
-    - Pristup lažnog korisnika može da uzrokuje injektovanjem lažnih podataka ili komandi u sistem.
-- Senzori i aktuatori
-    - Dobavljanje ključeva, tampering OS-a uređaja.
-    - Isključivanje aktuatora, što narušava rad sistema.
-    - Buffer overflow, koji može da dovede do grešaka u sistemu i do promene pnoašanja komponenata.
+### Pristup Home Network-u
+Pristup mreži Smart Home uređaja je možda i najopasniji scenario koji može da zadesi jedan ovakav sistem. Pristupom Home Network-u, napadač ima na raspolaganju sve uređaje koji su u njemu povezani, što uključuje i Gateway. Jako je važno zaštititi se od napada koji mogu da dovedu do pristupa Smart Home mreži.
 
-Mitigacije:
-- Sprovođenje autentifikacije i autorizacije.
-- Ubacivanje sigurnih napajanja u sistem; dodavanje neprekidnih napajanja, kako bi se rad senzora i aktuatora nastavio. Autorizacija i autentifikacija za on/off komande.
-- Sigurna implementacija i validacija svih unosa kako bi se sprovela zaštita od buffer overflow-a.
-
-<img src="slike/mitigacije/tampering.png" alt="Tampering" width="600"/>
+<img src="slike/stabla/pristup-network.png" alt="Pristup Home Network-u" width="650"/>
 
 <br>
 
-#### **REPUDIATION** (Negiranje izvršavanja određene akcije)
-- Za ovu stavku nisu pronađene odgovarajuće pretnje i napadi.
+#### **Password cracking**
+Password cracking napadi [6] obuhvataju više različitih načina za dobavljanje, odnosno razbijanje (cracking) šifre. Jedan od načina za sprovođenje password cracking-a je brute force [6][7] napad. Ovaj način funkcioniše po "trial-and-error" principu, odnosno napadač se služi raznim skriptama i programima kako bi pokušao što veći broj permutacija za probijanje i pogađanje šifre. Postoji nekoliko vrsta brute force napada. Može biti jednostavan brute force mehanizam, gde se napadač služi poznatim informacijama o korisniku, poput imena dece, kućnog ljubimca, godine rođenja, i od njih pokušava da sastavi šifru, ili prosto pokušava ustaljene, standardno postavljene šifre (default password), u nadi da ih korisnik nije menjao prilikom podešavanja sistema. Još jedan od brute force napada je credential stuffing, odnosno upotreba već kompromitovanih kredencijala koji su pokupljeni sa neke druge ranjive stranice ili aplikacije. Napadači se u ovom slučaju služe činjenicom da ljudi koriste iste kombinacije na više servisa. Postoji i obrnuti brute force napad, gde napadač ima poznatu šifru, i traži korisnička imena koja se podudaraju sa njom.
+
+Da bi se ublažili brute force napadi, postavljanje složenih šifri, kao i njihova periodična promena su dve ključne strategije. Složene šifre sadrže kombinaciju velikih i malih slova, brojeva i specijalnih znakova, kao i veći broj karaktera, odnosno povećanu dužinu šifre. Duže lozinke sa nasumičnim karakterima su teže za probijanje, jer se broj mogućih kombinacija drastično povećava. To znači da će brute force metode, koje se oslanjaju na isprobavanje svih mogućih kombinacija, zahtevati znatno više vremena i resursa kako bi pokušale da probiju šifru. Redovna promena šifri može da spreči dugotrajne password cracking napade. Ako napadač počne da se približava pogađanju šifre, promena iste resetuje sav dotadašnji napredak. Takođe, promena šifre pomaže u slučaju da su neke šifre već kompromitovane bez znanja korisnika.
+
+#### **Man in the Middle**
+Man in the Middle napad [8][9] predstavlja presretanje i potencijalnu izmenu komunikacije između dve strane. Napadač se umeće između, na primer, korisnika i servera, ili servera i Gateway-a, i presreće i menja podatke pre nego što ih prosledi originalnom primaocu. Ovo omogućava napadaču da ukrade poverljive informacije ili da manipuliše podacima koji se šalju ili primaju. Man in the Middle napadi mogu biti pasivni, gde napadač samo presreće komunikaciju, ili aktivni, gde se radi manipulacija i injektovanje podataka. Ovi napadi mogu biti vrlo opasni, jer često korisnici uopšte nisu svesni da im se komunikacija presreće.
+
+Proces izvršavanja MitM napada se sastoji iz sledećih koraka [9]:
+1. **Network Scanning and Targeting:** Napadač identifikuje IP adresu mete upotrebom nekog network scanning alata poput Nmap [10].
+2. **Interception and Traffic Analysis:** Kada je meta identifikovana, napadač koristi alate kao što je Bettercap [11], da presretne komunikaciju. Tada analizira saobraćaj, odnosno pakete, upotrebom softvera poput Wireshark-a [12], kako bi uočio ranjivosti u komunikaciji. 
+3. **Data Modification and Exploitation of Vulnerabilities:** Nakon pronalaženja ranjivosti, napadači mogu da manipulišu podacima koji se prenose. Koriste se alati kao što je Mallory [13], kako bi se ubacili maliciozni podaci, ili ukrale poverljive informacije, kako bi se ostvario pristup uređajima ili podacima Smart Home sistema.
+
+Kako bi se odradila mitigacija MitM napada u Smart Home sistemima, enkripcija komunikacijskih kanala igra ključnu ulogu. Potrebno je sprovesti TLS, odnosno Transport Layer Security, kriptografski protokol koji enkriptuje podatke koji se šalju između uređaja, tako da u slučaju presretanja oni budu u nečitljivom formatu. Pored TLS-a, važno je primeniti HTTP Strict Transport Security (HSTS), odnosno web sigurnosni mehanizam koji štiti od MitM napada tako što forsira komunikaciju isključivo preko sigurne HTTPS konekcije, umesto putem običnog HTTP-a. Još jedan način zaštite je upotreba RBAC-a, odnosno Role-Based Access Control-a. RBAC ograničava pristup mreži po principu korisničkih uloga, pružajući način za ograničavanje pristupa mrežnim resursima, što pomaže u sprečavanju neovlašćenog prostupa. Upotreba ovih mehanizama može znatno da smanji rizik MitM napada.
+
+#### **Phishing**
+TODO
 
 <br>
 
-#### **INFORMATION DISCLOSURE** (Davanje/prikazivanje podataka nekome ko nije autorizovan za iste)
-- Gateway
-    - Eavesdropping/praćenje saobraćaja ka gateway-u može dovesti do krađe podataka (npr access ključevi) i pristupa podacima svih uređaja.
-- Senzori i aktuatori
-    - Krađa uređaja (fizički napad): ukoliko je uređaj ukraden, može se pristupiti podacima koji se u njemu nalaze.
+### Onesposobljavanje sistema
+Veliki problem sa kojim Smart Home sistemi mogu da se suoče je nefunkcionisanje ili nedostupnost istog. Onesposobljavanje jednog uređaja može narušiti rad celog sistema. Isto tako, nedostupnost sistema, odnosno njegova nemogućnost komunikacije sa korisnikom predstavlja ozbiljan problem. U ovom delu su obrađeni napadi koji dovode do onesposobljavanja Smart Home komponenti ili nedostupnosti Smart Home-a.
 
-Mitigacije:
-- Upotreba sigurnih kanala za komunikaciju, enkripcija podataka koji se šalju.
-- Stroga kontrola pristupa i autorizacija, čuvanje ključeva u enkriptovanom obliku, promena ključeva
-
-<img src="slike/mitigacije/information-disclosure.png" alt="Information disclosure" width="600"/>
+<img src="slike/stabla/onesposobljavanje.png" alt="Pristup Home Network-u" width="650"/>
 
 <br>
 
-#### **DENIAL OF SERVICE** (Onesposobljavanje/nedostupnost sistema ili uređaja)
-- Gateway
-    - Slanje velikog broja zahteva/naredbi, kako bi se Gateway opteretio i bio nedostupan korisniku.
-- Aktuatori i senzori
-    - Slanje velikog broja zahteva/naredbi, kako bi se uređaj opteretio i bio nedostupan korisniku.
-    - Gašenje uređaja dovodi do njegove nedostupnosti za rad u sistemu.
-    - Krađa uređaja (fizički napad): Ako uređaj nije prisutan u sistemu, ne može ni da funkcioniše.
-- Wi-Fi
-    - Jamming [6] napad koji dovodi do preopterećenja mreže, gde će korisnikovi paketi biti odbačeni.
+#### **Wi-Fi jamming**
+TODO
 
-Mitigacije:
-- Implementacija ograničenja pristupa kako bi se sprečilo preopterećenje mreže velikim brojem zahteva.
-- Automatsko resetovanje ili preusmeravanje saobraćaja kada se detektuje preopterećenje.
-- Upotreba anti-jamming tehnologija i promena frekvencija kako bi se izbeglo ili umanjilo blokiranje signala; jačanje sigurnosti mreže i primena enkripcije.
-- Uvođenje sigurnog i neprekidnog napajanja protiv gašenja uređaja.
+#### **DoS**
+TODO
 
-<img src="slike/mitigacije/denial-of-service.png" alt="Denial of service" width="600"/>
-
-<br>
-
-#### **ELEVATION OF PRIVILEGE** (Pristup podacima koji su namenjeni samo korisnicima sa određenom privilegijom)
-- Senzori i aktuatori
-    - Buffer overflow se može sprovesti za izvršavanje radnji koje su dozvoljene samo određenim korisnicima.
-- Gateway
-    - Zloupotreba bagova u sistemu može dovesti do pristupa akcijama rezervisanim za druge privilegije.
-
-
-Mitigacije:
-- Upotreba least privilege modela.
-- Sigurna implementacija i validacija svih unosa kako bi se sprovela zaštita od buffer overflow-a.
-- Koristiti stabilne verzije firmware-a (ukoliko postoje).
-
-<img src="slike/mitigacije/elevation-of-privilege.png" alt="Denial of service" width="600"/>
-
+#### **Krađa uređaja**
+TODO
 
 <br><br>
 
-<img src="slike/mitigacije-dijagram.png" alt="Mitigacije"/>
+<img src="slike//mitigacije/mitigacije.png" alt="Mitigacije" width="650"/>
 
-Dijagram na kome su predstavljene neke od navedenih mitigacija
+*Dijagram na kome su predstavljene neke od navedenih mitigacija*
 
 <br><br>
 
-### Mitigacije - Firewall
+### Dodatne mitigacije
+#### **Firewall**
 U prethodnom navođenju mitigacija, Firewall kao mitigacija nije naveden, jer se ne može kategorizovati u mitigaciju pojedinačnih napada, već spada u zaštitu od većine pomenutih pretnji. Odnosno, pruža zažtitu na nivou celog modula od različitih vrsta napada, a ne samo nekog dela sistema [1].
 
 Firewall se primenjuje kako bi se kontrolisao saobraćaj mreže. Gateway, kao pristupna tačka, komunicira sa Internetom. Sav saobraćaj Smart Home mreže koji se prenosi iz interne mreže na Internet ili s Interneta na internu mrežu prolazi kroz Gateway. Prema tome, firewall se može postaviti na Gateway kako bi se sprečili svi neautorizovani pristupi ili sumnjive informacije. Firewall takođe prati i analizira sav saobraćaj.
 
 <img src="slike/mitigacije/firewall.png" alt="Firewall" width="500"/>
 
-<br><br>
+<br>
+
+#### **Monitoring**
+TODO
+
+<br>
 
 ## Literatura:
 
@@ -189,4 +118,20 @@ Firewall se primenjuje kako bi se kontrolisao saobraćaj mreže. Gateway, kao pr
 
 [5] A Threat Modelling Approach to Analyze and Mitigate Botnet Attacks in Smart Home Use Case: Syed Ghazanfar Abbas, Shahzaib Zahid, Faisal Hussain, Ghalib A. Shah, Muhammad Husnain
 
-[6] https://seon.io/resources/dictionary/jamming-attacks/
+[6] Password Cracking: Sam Martin, Mark Tokutomi
+
+[7] https://crashtest-security.com/password-attack/
+
+[8] https://www.imperva.com/learn/application-security/man-in-the-middle-attack-mitm/
+
+[9] IoT and Man-in-the-Middle Attacks: Hamidreza Fereidouni, Olga Fadeitcheva, Mehdi Zalai
+
+[10] https://nmap.org/
+
+[11] https://www.bettercap.org/
+
+[12] https://www.wireshark.org/
+
+[13] https://github.com/intrepidusgroup/mallory
+
+[A] https://seon.io/resources/dictionary/jamming-attacks/

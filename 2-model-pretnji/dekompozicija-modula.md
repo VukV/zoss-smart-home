@@ -1,6 +1,6 @@
 # Dekompozicija modula
 
-Dekompozicija modula je izvršina na osnovu izdvojene arhitekture Smart Home sistema ([predlog.md](../1-predlog-projekta/predlog.md)).
+Dekompozicija modula je izvršina na osnovu izdvojene arhitekture Smart Home sistema ([arhitektura.md](../1-arhitektura/arhitektura.md)).
 
 ### Na visokom nivou
 
@@ -35,4 +35,4 @@ Unutar samog Smart Home sistema se izdvajaju dve bitne komponente:
 
 <br>
 
-(terminologija svih komponenata je detaljnije definisana u [predlogu projekta](../1-predlog-projekta/predlog.md))
+(terminologija svih komponenata je detaljnije definisana u [arhitekturi projekta](../1-arhitektura/arhitektura.md))

@@ -16,7 +16,7 @@ Uprkos različitim arhitekturama, postoje zajedničke komponente koje svaka arhi
 Server je upravljačka jedinica cele strukture, a ne interno domaćinstva. To znači da se korisnikove instrukcije Smart Home sistemu šalju od korisničke aplikacije kroz server. Preko servera se dobavljaju podaci i informacije o uređajima, izvršavaju udaljene (remote) naredbe i akcije, itd. Server aktivno komunicira sa klijentskom aplikacijom i samim Smart Home-om. Predstavlja most između korisnika i Smart Home uređaja.
 
 #### 2. Klijentska aplikacija
-Obezbeđuje interfejs krajnjem korisniku za upotrebu i monitoring [6] Smart Home sistema. Od servera dobija monitoring podatke, a istom šalje upravljačke instrukcije za uređaje unutar sistema.
+Obezbeđuje interfejs krajnjem korisniku za upotrebu i monitoring [6] Smart Home sistema. Od servera dobija monitoring podatke, odnosno statuse uređaja, izvršena merenja od strane senzora, a istom šalje upravljačke instrukcije za uređaje unutar sistema.
 
 #### 3. Smart Home - deo sistema koji je meta bezbednosne analize u okviru ovog istraživanja i koja je detaljnije opisana ispod
 
