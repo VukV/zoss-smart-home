@@ -83,7 +83,9 @@ TODO
 TODO
 
 #### **Krađa uređaja**
-TODO
+Krađa uređaja u smart home sistemima predstavlja fizički napad, odnosno neovlašćeno provaljivanje u kuću ili stan i otimanje pametnih uređaja. Ovo ne samo da dovodi do gubitka skupocenih uređaja, odnosno do finasijskog troška, već i kompromituje sigurnost domaćinstva. Napadači mogu iskoristiti ukradene uređaje da pristupe podacima, ili da poremete funkcionisanje celokupnog Smart Home sistema.
+
+Glavna mitigacija je obezbeđivanje domaćinstva, odnosno postavljanje čvrstih brava, instalaciju alarmnih sistema, i korišćenje bezbednosnih kamera. 
 
 <br><br>
 
