@@ -69,6 +69,12 @@ Ključna zaštita protiv phishing-a je obrazovanje i svest korisnika. Ovo uklju�
 
 <br>
 
+<img src="slike//mitigacije/mitigacije.png" alt="Mitigacije" width="500"/>
+
+*Dijagram na kome su predstavljene neke od navedenih mitigacija*
+
+<br>
+
 ### Onesposobljavanje sistema
 Veliki problem sa kojim Smart Home sistemi mogu da se suoče je nefunkcionisanje ili nedostupnost istog. Onesposobljavanje jednog uređaja može narušiti rad celog sistema. Isto tako, nedostupnost sistema, odnosno njegova nemogućnost komunikacije sa korisnikom predstavlja ozbiljan problem. U ovom delu su obrađeni napadi koji dovode do onesposobljavanja Smart Home komponenti ili nedostupnosti Smart Home-a.
 
@@ -77,38 +83,35 @@ Veliki problem sa kojim Smart Home sistemi mogu da se suoče je nefunkcionisanje
 <br>
 
 #### **Wi-Fi jamming**
-TODO
+Wi-Fi jamming [15][16] je vrsta Denial of Service (DoS) napada. DoS napadi pokušavaju da utiču na dostupnost mreže tako što pokušavaju da spreče korisnike da pristupe mreži, održe komunikaciju sa mrežom i izazivaju ogroman pad performansi mreže, u pogledu njene propusnosti. Remećenje osnovnih usluga mreže totalno poremetiti njenu upotrebljivost, i čak ugroziti integritet, poverljivost i dostupnost podataka.
 
-#### **DoS**
-TODO
+Jamming napadi su DoS napadi u kojima napadač šalje radio frekvencije koje se sukobljavaju i mešaju sa frekvencijama Wi-Fi mreže. Cilj je da se blokiraju mrežni uređaji i pristupne tačke (access points), kako podaci ne bi mogli da se prenose ili primaju na fizičkom sloju OSI modela [18], tako da ne mogu da se prenesu ni na više slojeve mreže.
+
+Postoji nekoliko vrsta jamming napada:
+* **Resource Unlimited Attack (RUA)** [16]: Napadač raspolaže velikom količinom resusra i konstanto preplavljuje mrežu intenzivnim signalima, narušavajući svu wireless komunikaciju u okruženju.
+* **Reactive Attack** [16]: Predstavlja napad koji troši znatno manje energije, zato što čeka da detektuje slanje podataka. Tek kada ga detektuje, onda remeti mrežu, odnosno sprovodi jamming.
+* **Hit and Run (HR) Attack** [16]: Ovaj napad se okida periodično, često na nasumične vremenske intervale. Na taj način je dosta teže uočiti da je u pitanju jamming napad.
+* **Symbol Attack** [16]: Napad u kome napadač menja samo jedan simbol, ali kako jedan oštećeni simbol utiče na paket, onda će ceo paket podataka biti oštećen.
+
+Na više načina se može izbegavati jamming ili štititi od istog:
+* **Channel hopping** [19]: Tehnika koja podrazumeva promenu kanala za komunikaciju, odnosno promenu opsega frekvencije koji se koristi za prenos podataka. Svaki kanal funkcioniše sa drugačijom frekvencijom, što umanjuje sukobljavanje pri komunikaciji, i omogućava više uređaja da komuniciraju istovremeno. Postoji više tehnika za channel hopping. Jedan od njih je proaktivna promena, koja predstavlja promenu kanala na određeni vremenski period, nevezano od jamming napada. Pored toga postoji i reaktivna promena, koja se dešava ukoliko kanal zadesi kašnjenje, ili je na neki drugi način pretpostavljeno da se sprovodi jamming napad.
+* **Detekcija reactive napada upotrebom Bit Rate Error-a (BER)** [19]: Podrazumeva praćenje grešaka u prenosu podataka. U Wi-Fi mrežama, podaci se šalju u bitovima, a BER meri koliko od tih bitova je pogrešno primljeno. Tokom reaktivnog napada ometanja, ometač čeka da detektuje prenos, a zatim sprovodi jamming napad, što dovodi do naglog povećanja BER-a. Praćenjem i analiziranjem BER-a, sistem može da detektuje prisustvo ometača kada dođe do neočekivanog povećanja grešaka u prenosu. Ova mitigacija je vrlo efikasna jer direktno sagledava uticaj jamming napada na integritet podataka.
+* **Ant sistem** [19]: Ova mitigacija, nazvana po načinu na koji mravi u prirodi nalaze najkrači put do hrane, predstavlja algoritam za detekciju ometanja. Njegov rad se zasniva na inteligentnom agentu, koji se iterativno kreće kroz mrežu i prikuplja informacije sa različitih kanala. Te informacije se čuvaju u listi koja se zove "tabu", i koriste se za odlučivanje o redirekcijama unutar mreže. Sistem izvršava procenu potencijalnog ometanja na osnovu podataka o gubitku pateka, Signal-to-Noise odnosu (SNR), Bit Error Rate-u (BER), Packet Delivery odnosu (PDR), itd. Model tada računa verovatnoću jamming napada. Sistem iterativno računa ove verovatnoće između čvorova u mreži, i tako izbegava rute u kojima je ometanje detektovano. Na taj način održava integritet mreže uprkos jamming napadu.
 
 #### **Krađa uređaja**
 Krađa uređaja u smart home sistemima predstavlja fizički napad, odnosno neovlašćeno provaljivanje u kuću ili stan i otimanje pametnih uređaja. Ovo ne samo da dovodi do gubitka skupocenih uređaja, odnosno do finasijskog troška, već i kompromituje sigurnost domaćinstva. Napadači mogu iskoristiti ukradene uređaje da pristupe podacima, ili da poremete funkcionisanje celokupnog Smart Home sistema.
 
 Glavna mitigacija je obezbeđivanje domaćinstva, odnosno postavljanje čvrstih brava, instalaciju alarmnih sistema, i korišćenje bezbednosnih kamera. 
 
-<br><br>
-
-<img src="slike//mitigacije/mitigacije.png" alt="Mitigacije" width="650"/>
-
-*Dijagram na kome su predstavljene neke od navedenih mitigacija*
-
-<br><br>
+<br>
 
 ### Dodatne mitigacije
 #### **Firewall**
-U prethodnom navođenju mitigacija, Firewall kao mitigacija nije naveden, jer se ne može kategorizovati u mitigaciju pojedinačnih napada, već spada u zaštitu od većine pomenutih pretnji. Odnosno, pruža zažtitu na nivou celog modula od različitih vrsta napada, a ne samo nekog dela sistema [1].
-
-Firewall se primenjuje kako bi se kontrolisao saobraćaj mreže. Gateway, kao pristupna tačka, komunicira sa Internetom. Sav saobraćaj Smart Home mreže koji se prenosi iz interne mreže na Internet ili s Interneta na internu mrežu prolazi kroz Gateway. Prema tome, firewall se može postaviti na Gateway kako bi se sprečili svi neautorizovani pristupi ili sumnjive informacije. Firewall takođe prati i analizira sav saobraćaj.
+Firewall [1] pruža zažtitu komunikacije na nivou celog modula. Primenjuje se kako bi se kontrolisao saobraćaj mreže. Gateway, kao pristupna tačka, komunicira sa Internetom. Sav saobraćaj Smart Home mreže koji se prenosi iz interne mreže na Internet ili s Interneta na internu mrežu prolazi kroz Gateway. Prema tome, firewall se može postaviti na Gateway kako bi se sprečili svi neautorizovani pristupi ili sumnjive informacije. Firewall takođe prati i analizira sav saobraćaj, što može dati dodatni uvid u potencijalne napade.
 
 <img src="slike/mitigacije/firewall.png" alt="Firewall" width="500"/>
 
-<br>
-
-#### **Monitoring**
-TODO
-
-<br>
+<br><br>
 
 ## Literatura:
 
@@ -140,4 +143,12 @@ TODO
 
 [14] https://www.ibm.com/topics/phishing
 
-[A] https://seon.io/resources/dictionary/jamming-attacks/
+[15] Jamming DoS in IEEE 802.11 WLANs: Sunitha Azad, Eitan Altman, Majed Haddad
+
+[16] Effects of DoS Attack in Wi-Fi Broadband Network: Akende Y. Nalukui, Charles S. Lubobya
+
+[17] https://www.cisa.gov/news-events/news/understanding-denial-service-attacks
+
+[18] https://www.imperva.com/learn/application-security/osi-model/
+
+[19] Jamming and Anti-jamming Techniques in Wireless Networks: Kanika Grover, Alvin Lim, Qing Yang
