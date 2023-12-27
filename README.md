@@ -37,4 +37,4 @@ Na kraju, istraživanje će se fokusirati na predlaganje strategija zaštite koj
 - [Arhitektura Smart Home-a](1-predlog-projekta/predlog.md) (Opis i arhitektura sistema, definicija komponenata)
 - Model pretnji
     - [Dekompozicija modula](2-model-pretnji/dekompozicija-modula.md) (Grafički prikaz modula na osnovu arhitekture sistema)
-    - [Analiza pretnji](2-model-pretnji/analiza-pretnji.md) (Pretnje, napadi i mitigacije po STRIDE modelu)
+    - [Analiza pretnji](2-model-pretnji/analiza-pretnji.md) (Pretnje, napadi i mitigacije)
