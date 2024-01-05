@@ -34,7 +34,9 @@ Na kraju, istraživanje će se fokusirati na predlaganje strategija zaštite koj
 <br>
 
 ## Sadržaj
-- [Arhitektura Smart Home-a](1-predlog-projekta/predlog.md) (Opis i arhitektura sistema, definicija komponenata)
-- Model pretnji
-    - [Dekompozicija modula](2-model-pretnji/dekompozicija-modula.md) (Grafički prikaz modula na osnovu arhitekture sistema)
-    - [Analiza pretnji](2-model-pretnji/analiza-pretnji.md) (Pretnje, napadi i mitigacije)
+1. [Arhitektura Smart Home-a](1-predlog-projekta/predlog.md) (Opis i arhitektura sistema, definicija komponenata)
+2. Model pretnji
+    1. [Dekompozicija modula](2-model-pretnji/dekompozicija-modula.md) (Grafički prikaz modula na osnovu arhitekture sistema)
+    2. [Analiza pretnji](2-model-pretnji/analiza-pretnji.md) (Pretnje, napadi i mitigacije)
+        1. [Man in the Middle](2-model-pretnji/man-in-the-middle.md) (Opis sprovođenja MitM napada)
+        2. [Wi-Fi jamming]() (Opis sprovođenja Wi-Fi jamming napada)
