@@ -397,7 +397,7 @@ Ubrzo, napadnuta Wi-Fi mreža će postati nedostupna i sasvim neupotrebljiva tok
 
 <br>
 
-### Rešenje
+## Rešenje
 
 Srećom, sada postoje protected management frames [7] koji rešavaju ovaj problem. PMF omogućava bezbedan prenos deauthentication frame-ova, tako što pruža enkripciju istih i sprečava njihov spoofing. Takođe, sprovodi obostranu autentifikaciju, odnosno uređaj i Wi-Fi ruter moraju međusobno da se autentifikuju pre nego što se frame prihvati. Jedini problem ove funkcionalnosti je što još uvek nije široko sprovedena, te je većina 2.4GHz Wi-Fi mreža još uvek podložna ovom napadu.
 
