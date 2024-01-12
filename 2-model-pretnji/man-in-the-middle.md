@@ -1,6 +1,6 @@
 # Man in the Middle
 
-U ovom dokumentu je detaljnije opisan Man in the Middle napad, odnosno kako se on izvodi. Napad se sprovodi upotrebom [prethodno navedenih alata](analiza-pretnji.md#man-in-the-middle), gde će fokus napada biti usmeren na upotrebu Bettercap-a [1].
+U ovom dokumentu je detaljnije opisan Man in the Middle napad, odnosno kako se on izvodi. Napad se sprovodi upotrebom Bettercap-a [1].
 
 ## Bettercap
 
